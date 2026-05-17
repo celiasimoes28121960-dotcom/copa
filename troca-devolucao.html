@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Troca e Devolução – Arena Brasil Figurinhas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .policy-hero {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1e3a5f 100%);
+      color: #fff;
+      padding: 56px 24px;
+      text-align: center;
+    }
+    .policy-hero h1 { font-size: 34px; font-weight: 800; margin-bottom: 10px; }
+    .policy-hero p { font-size: 14px; color: rgba(255,255,255,.55); }
+
+    .policy-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 56px 24px 72px;
+    }
+    .policy-toc {
+      background: var(--gray-lt);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 48px;
+    }
+    .policy-toc h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--gray); margin-bottom: 12px; }
+    .policy-toc ol { padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+    .policy-toc ol li a { font-size: 14px; color: var(--green); }
+    .policy-toc ol li a:hover { text-decoration: underline; }
+
+    .policy-section { margin-bottom: 44px; }
+    .policy-section h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--green-lt);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .policy-section h2 .num {
+      background: var(--green);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .policy-section p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #374151;
+      margin-bottom: 12px;
+    }
+    .policy-section ul {
+      list-style: disc;
+      padding-left: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .policy-section ul li { font-size: 15px; color: #374151; line-height: 1.6; }
+
+    .info-box {
+      background: var(--green-lt);
+      border-left: 4px solid var(--green);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: var(--green-dk);
+      font-weight: 500;
+    }
+    .warn-box {
+      background: #fff8ed;
+      border-left: 4px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: #92400e;
+      font-weight: 500;
+    }
+
+    .step-list {
+      counter-reset: steps;
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .step-list li {
+      counter-increment: steps;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.6;
+    }
+    .step-list li::before {
+      content: counter(steps);
+      background: var(--navy);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contact-cta {
+      background: var(--navy);
+      border-radius: 16px;
+      padding: 36px;
+      text-align: center;
+      color: #fff;
+      margin-top: 48px;
+    }
+    .contact-cta h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .contact-cta p { font-size: 14px; color: rgba(255,255,255,.7); margin-bottom: 20px; }
+    .contact-cta a {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 700;
+      transition: background .2s;
+    }
+    .contact-cta a:hover { background: var(--green-dk); }
+  </style>
+</head>
+<body>
+
+<div class="announce"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:5px"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Frete grátis para todo o Brasil hoje! <a href="catalogo.html">Ver produtos</a></div>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="https://vyy360zfmy.ufs.sh/f/eSgPtTcyxKbU5fkZZsIDBzXRPemMjHQ1d0Vs4yaOYr6EwUKS" alt="Arena Brasil Figurinhas" />
+    </a>
+    <div class="search-wrap">
+      <svg class="icon-search" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Buscar álbuns, figurinhas, kits…" />
+    </div>
+    <div class="header-actions">
+      <a href="entrar.html" class="header-btn">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Entrar
+      </a>
+      <a href="#" class="cart-btn">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Carrinho <span class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html">Início</a>
+    <a href="catalogo.html">Catálogo</a>
+    <a href="catalogo.html?categoria=1">Álbuns</a>
+    <a href="catalogo.html?categoria=2">Figurinhas</a>
+    <a href="catalogo.html?categoria=3">Cards</a>
+    <a href="catalogo.html?categoria=4">Kits</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+    <div class="nav-sep"></div>
+    <a href="acompanhar.html" class="nav-track"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> Acompanhar Pedido</a>
+  </div>
+</nav>
+
+<div class="policy-hero">
+  <h1><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:10px"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Troca e Devolução</h1>
+  <p>Última atualização: 22 de abril de 2026</p>
+</div>
+
+<div class="policy-wrap">
+  <div class="policy-toc">
+    <h3>Índice</h3>
+    <ol>
+      <li><a href="#cancelamento">Cancelamento Antes do Envio</a></li>
+      <li><a href="#arrependimento">Direito de Arrependimento</a></li>
+      <li><a href="#defeitos">Produtos com Defeito ou Incorretos</a></li>
+      <li><a href="#reembolso">Prazos de Reembolso</a></li>
+      <li><a href="#processo">Como Iniciar uma Solicitação</a></li>
+    </ol>
+  </div>
+
+  <div class="info-box">
+    Nossa política é baseada no Código de Defesa do Consumidor (Lei nº 8.078/1990) e no Marco Civil da Internet. Seu direito é nossa prioridade.
+  </div>
+
+  <div class="policy-section" id="cancelamento">
+    <h2><span class="num">1</span>Cancelamento Antes do Envio</h2>
+    <p>Se você deseja cancelar seu pedido antes que ele seja despachado, temos as seguintes regras:</p>
+    <ul>
+      <li><strong>Pedidos com pagamento pendente:</strong> podem ser cancelados a qualquer momento sem custo algum.</li>
+      <li><strong>Pedidos com pagamento confirmado (não despachados):</strong> entre em contato imediatamente pelo WhatsApp ou e-mail. Faremos o possível para interceptar o envio.</li>
+      <li><strong>Pedidos já despachados:</strong> não é possível cancelar antes da entrega. Após receber, você pode solicitar devolução por arrependimento (ver seção 2).</li>
+    </ul>
+    <div class="info-box">Cancelamentos de pedidos ainda não enviados resultam em reembolso integral, sem qualquer taxa ou desconto.</div>
+  </div>
+
+  <div class="policy-section" id="arrependimento">
+    <h2><span class="num">2</span>Direito de Arrependimento</h2>
+    <p>Conforme o artigo 49 do Código de Defesa do Consumidor, você tem direito de desistir de qualquer compra realizada pela internet em até <strong>7 dias corridos</strong> a contar da data de recebimento do produto.</p>
+    <p>Para exercer o direito de arrependimento:</p>
+    <ul>
+      <li>O produto deve estar em sua embalagem original, sem sinais de uso.</li>
+      <li>Todos os itens, acessórios e brindes incluídos devem ser devolvidos juntos.</li>
+      <li>O custo de devolução (frete de retorno) fica por conta do comprador neste caso.</li>
+      <li>Após recebermos e conferirmos o produto, o reembolso é processado integralmente.</li>
+    </ul>
+    <div class="warn-box">Figurinhas ou cards que já foram abertos/manuseados podem não ser elegíveis para devolução por arrependimento, pois o conteúdo é aleatório e a abertura caracteriza uso do produto.</div>
+  </div>
+
+  <div class="policy-section" id="defeitos">
+    <h2><span class="num">3</span>Produtos com Defeito ou Incorretos</h2>
+    <p>Se você recebeu um produto com defeito de fabricação ou diferente do anunciado, você tem direito a:</p>
+    <ul>
+      <li><strong>Troca pelo mesmo produto:</strong> enviaremos um novo exemplar sem custo adicional.</li>
+      <li><strong>Reembolso integral:</strong> incluindo o frete pago na compra original.</li>
+      <li><strong>Crédito na loja:</strong> para usar em qualquer produto do catálogo.</li>
+    </ul>
+    <p>Nestes casos, o frete de retorno do produto defeituoso é por nossa conta. Enviaremos uma etiqueta de postagem pré-paga após a abertura do chamado.</p>
+    <div class="info-box">Fotografe ou grave um vídeo do produto defeituoso ao receber — isso agiliza muito a resolução do seu caso.</div>
+    <p>O prazo para reclamar de produtos com defeito é de <strong>90 dias</strong> a partir da data de recebimento, conforme o CDC.</p>
+  </div>
+
+  <div class="policy-section" id="reembolso">
+    <h2><span class="num">4</span>Prazos de Reembolso</h2>
+    <p>Os prazos de reembolso variam conforme a forma de pagamento utilizada:</p>
+    <ul>
+      <li><strong>PIX:</strong> reembolso em até <strong>1 dia útil</strong> após aprovação da solicitação.</li>
+      <li><strong>Boleto bancário:</strong> reembolso em até <strong>3 dias úteis</strong> via transferência bancária.</li>
+      <li><strong>Cartão de crédito:</strong> o estorno aparece na fatura em até <strong>2 ciclos de faturamento</strong>, dependendo da operadora.</li>
+    </ul>
+    <p>Os prazos acima contam a partir da confirmação de recebimento e aprovação da solicitação pela nossa equipe, o que ocorre em até 2 dias úteis após recebermos o produto devolvido (quando aplicável).</p>
+  </div>
+
+  <div class="policy-section" id="processo">
+    <h2><span class="num">5</span>Como Iniciar uma Solicitação</h2>
+    <p>Para solicitar troca, devolução ou cancelamento, siga os passos abaixo:</p>
+    <ol class="step-list">
+      <li>Entre em contato pelo e-mail <strong>atendimento@paninbrasil.co</strong> ou pelo WhatsApp <strong>(11) 94106-7756</strong>.</li>
+      <li>Informe o número do pedido, seu nome completo e o motivo da solicitação.</li>
+      <li>Anexe fotos ou vídeos do produto (obrigatório para casos de defeito ou item incorreto).</li>
+      <li>Nossa equipe analisará sua solicitação e responderá em até <strong>2 dias úteis</strong>.</li>
+      <li>Se aprovada a devolução, você receberá as instruções de envio e, quando aplicável, a etiqueta pré-paga.</li>
+      <li>Após recebermos e conferirmos o produto, processaremos o reembolso ou a troca conforme combinado.</li>
+    </ol>
+  </div>
+
+  <div class="contact-cta">
+    <h3>Precisa de ajuda com uma troca?</h3>
+    <p>Nossa equipe responde em até 24h úteis. Também atendemos pelo WhatsApp.</p>
+    <a href="contato.html">Falar com o suporte</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><img src="https://vyy360zfmy.ufs.sh/f/eSgPtTcyxKbU5fkZZsIDBzXRPemMjHQ1d0Vs4yaOYr6EwUKS" alt="Arena Brasil Figurinhas" /></div>
+      <p>A melhor loja de figurinhas e álbuns do Brasil. Especialistas em coleções esportivas para a Copa do Mundo 2026.</p>
+      <div class="footer-contact">
+        <a href="mailto:atendimento@paninbrasil.co"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> atendimento@paninbrasil.co</a>
+        <a href="https://wa.me/5511941067756"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.07 6.07l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> (11) 94106-7756</a>
+        <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Rua Delfim, 600 – Belo Horizonte/MG</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Categorias</h4><ul><li><a href="catalogo.html?categoria=1">Álbuns</a></li><li><a href="catalogo.html?categoria=2">Figurinhas</a></li><li><a href="catalogo.html?categoria=3">Cards</a></li><li><a href="catalogo.html?categoria=4">Kits</a></li></ul></div>
+    <div class="footer-col"><h4>Informações</h4><ul><li><a href="sobre.html">Sobre nós</a></li><li><a href="contato.html">Contato</a></li><li><a href="acompanhar.html">Acompanhar Pedido</a></li><li><a href="entrar.html">Minha Conta</a></li></ul></div>
+    <div class="footer-col"><h4>Políticas</h4><ul><li><a href="privacidade.html">Política de Privacidade</a></li><li><a href="troca-devolucao.html">Troca e Devolução</a></li><li><a href="termos.html">Termos de Uso</a></li><li><a href="frete.html">Política de Frete</a></li><li><a href="contato.html">Contato</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Arena Brasil Figurinhas &bull; EMP ENGENHARIA LTDA &bull; CNPJ: 18.598.692/0001-87</div>
+    <div class="footer-badges"><span class="footer-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:3px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Norton</span><span class="footer-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> ReclameAqui</span><span class="footer-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;vertical-align:middle;margin-right:3px"><polyline points="20 6 9 17 4 12"/></svg> Google Safe</span></div>
+    <div class="footer-legal"><a href="privacidade.html">Privacidade</a><a href="termos.html">Termos</a></div>
+  </div>
+</footer>
+<a href="https://wa.me/5511941067756?text=Olá vim pelo site e gostaria de tirar uma dúvida!" class="wa-float" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+</body>
+</html>
