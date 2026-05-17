@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo – Arena Brasil Figurinhas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── CATALOG LAYOUT ── */
+    .catalog-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 24px 56px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: sticky;
+      top: 88px;
+    }
+    .sidebar-title {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      padding: 14px 18px;
+    }
+    .sidebar-list { display: flex; flex-direction: column; }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 18px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+    .sidebar-item:last-child { border-bottom: none; }
+    .sidebar-item:hover { background: var(--gray-lt); color: var(--green); }
+    .sidebar-item.active { color: var(--green); font-weight: 700; background: var(--green-lt); }
+    .sidebar-count {
+      background: var(--gray-lt);
+      color: var(--gray);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 999px;
+    }
+    .sidebar-item.active .sidebar-count { background: var(--green-lt); color: var(--green); }
+
+    /* ── CATALOG CONTROLS ── */
+    .catalog-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .catalog-count { font-size: 14px; color: var(--gray); }
+    .catalog-count strong { color: var(--text); }
+    .catalog-selects { display: flex; gap: 10px; align-items: center; }
+    .catalog-selects select {
+      height: 38px;
+      padding: 0 32px 0 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      transition: border-color .2s;
+    }
+    .catalog-selects select:focus { border-color: var(--green); }
+
+    /* ── PRODUCTS SECTION ── */
+    .catalog-main .products-grid { grid-template-columns: repeat(3, 1fr); }
+
+    @media (max-width: 900px) {
+      .catalog-wrap { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .catalog-main .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .catalog-main .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCE -->
+<div class="announce">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:5px"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Frete grátis para todo o Brasil hoje! Aproveite a coleção completa da Copa 2026
+  <a href="#">Ver promoção</a>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="https://vyy360zfmy.ufs.sh/f/eSgPtTcyxKbU5fkZZsIDBzXRPemMjHQ1d0Vs4yaOYr6EwUKS" alt="Arena Brasil Figurinhas" />
+    </a>
+    <div class="search-wrap">
+      <svg class="icon-search" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" placeholder="Buscar álbuns, figurinhas, kits…" />
+    </div>
+    <div class="header-actions">
+      <a href="entrar.html" class="header-btn">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Entrar
+      </a>
+      <a href="acompanhar.html" class="header-btn">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/></svg>
+        Pedidos
+      </a>
+      <a href="carrinho.html" class="cart-btn">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Carrinho <span class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html">Início</a>
+    <a href="catalogo.html" class="active">Catálogo</a>
+    <a href="catalogo.html?categoria=1">Álbuns</a>
+    <a href="catalogo.html?categoria=2">Figurinhas</a>
+    <a href="catalogo.html?categoria=3">Cards</a>
+    <a href="catalogo.html?categoria=4">Kits</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+    <div class="nav-sep"></div>
+    <a href="acompanhar.html" class="nav-track"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> Acompanhar Pedido</a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Início</a>
+    <span>›</span>
+    <span id="bc-label">Catálogo</span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="catalog-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Categorias</div>
+    <div class="sidebar-list">
+      <div class="sidebar-item active" data-cat="todos" onclick="setCat(this,'todos')">
+        Todos os produtos <span class="sidebar-count">18</span>
+      </div>
+      <div class="sidebar-item" data-cat="1" onclick="setCat(this,'1')">
+        Álbuns <span class="sidebar-count">4</span>
+      </div>
+      <div class="sidebar-item" data-cat="2" onclick="setCat(this,'2')">
+        Figurinhas <span class="sidebar-count">4</span>
+      </div>
+      <div class="sidebar-item" data-cat="3" onclick="setCat(this,'3')">
+        Cards <span class="sidebar-count">4</span>
+      </div>
+      <div class="sidebar-item" data-cat="4" onclick="setCat(this,'4')">
+        Kits <span class="sidebar-count">6</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="catalog-main">
+    <div class="catalog-controls">
+      <div class="catalog-count">Mostrando <strong id="visible-count">18</strong> de <strong>18</strong> produtos</div>
+      <div class="catalog-selects">
+        <select id="sort-select" onchange="sortProducts()">
+          <option value="relevancia">Relevância</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+          <option value="az">A → Z</option>
+          <option value="za">Z → A</option>
+        </select>
+        <select id="per-page">
+          <option value="20">20 por página</option>
+          <option value="40">40 por página</option>
+          <option value="80">80 por página</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="products-grid" id="product-grid">
+
+      <!-- ÁLBUNS -->
+      <div class="product-card" data-cat="1" data-price="23.00" data-name="Álbum Brochura FIFA World Cup 2026">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/album-brochura-fifa-world-cup-2026.jpg" alt="Álbum Brochura" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Álbum</div>
+          <div class="product-name">Álbum Brochura FIFA World Cup 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 23,00</span>
+            <span class="price-new">R$ 21,85</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 21,85 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="1" data-price="68.00" data-name="Álbum Capa Dura FIFA World Cup 2026">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/album-capa-dura-fifa-world-cup-2026.jpg" alt="Álbum Capa Dura" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-new">MAIS VENDIDO</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Álbum</div>
+          <div class="product-name">Álbum Capa Dura FIFA World Cup 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 68,00</span>
+            <span class="price-new">R$ 64,60</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 64,60 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="1" data-price="72.00" data-name="Álbum Capa Dura Prata FIFA World Cup 2026">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/album-capa-dura-prata-fifa-world-cup-2026.jpg" alt="Álbum Capa Dura Prata" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Álbum</div>
+          <div class="product-name">Álbum Capa Dura Prata FIFA World Cup 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 72,00</span>
+            <span class="price-new">R$ 68,40</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 68,40 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="1" data-price="72.00" data-name="Álbum Capa Dura Ouro FIFA World Cup 2026">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/album-capa-dura-ouro-fifa-world-cup-2026.jpg" alt="Álbum Capa Dura Ouro" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Álbum</div>
+          <div class="product-name">Álbum Capa Dura Ouro FIFA World Cup 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 72,00</span>
+            <span class="price-new">R$ 68,40</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 68,40 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <!-- FIGURINHAS -->
+      <div class="product-card" data-cat="2" data-price="239.90" data-name="Box 50 Pacotes Figurinhas FIFA World Cup 2026">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/box-50-pacotes-figurinhas-fifa-world-cup-2026.jpg" alt="Box 50 Pacotes" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Figurinhas</div>
+          <div class="product-name">Box 50 Pacotes Figurinhas FIFA World Cup 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 239,90</span>
+            <span class="price-new">R$ 227,91</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 227,91 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="2" data-price="6.70" data-name="Envelope de Figurinhas FIFA World Cup 2026">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/envelope-de-figurinhas-fifa-world-cup-2026.jpg" alt="Envelope Figurinhas" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Figurinhas</div>
+          <div class="product-name">Envelope de Figurinhas FIFA World Cup 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 6,70</span>
+            <span class="price-new">R$ 6,37</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 6,37 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="2" data-price="73.99" data-name="Kit 12 Envelopes Figurinhas FIFA World Cup 2026">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/kit-12-envelopes-figurinhas-fifa-world-cup-2026.jpg" alt="Kit 12 Envelopes" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Figurinhas</div>
+          <div class="product-name">Kit 12 Envelopes Figurinhas FIFA World Cup 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 73,99</span>
+            <span class="price-new">R$ 70,30</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 70,30 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="2" data-price="349.90" data-name="Box 100 Pacotes Figurinhas FIFA World Cup 2026">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/box-100-pacotes-figurinhas-fifa-world-cup-2026.jpg" alt="Box 100 Pacotes" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Figurinhas</div>
+          <div class="product-name">Box 100 Pacotes Figurinhas FIFA World Cup 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 349,90</span>
+            <span class="price-new">R$ 332,37</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 332,37 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <!-- CARDS -->
+      <div class="product-card" data-cat="3" data-price="89.90" data-name="Adrenalyn XL FIFA World Cup 2026 Mega Tin">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/adrenalyn-xl-fifa-world-cup-2026-mega-tin.jpg" alt="Adrenalyn Mega Tin" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Cards</div>
+          <div class="product-name">Adrenalyn XL FIFA World Cup 2026 Mega Tin</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 89,90</span>
+            <span class="price-new">R$ 85,41</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 85,41 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="3" data-price="39.90" data-name="Adrenalyn XL FIFA World Cup 2026 Starter Pack">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/adrenalyn-xl-fifa-world-cup-2026-starter-pack.jpg" alt="Adrenalyn Starter Pack" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Cards</div>
+          <div class="product-name">Adrenalyn XL FIFA World Cup 2026 Starter Pack</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 39,90</span>
+            <span class="price-new">R$ 37,91</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 37,91 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="3" data-price="279.90" data-name="Adrenalyn XL Display Box 36 Pacotes">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/adrenalyn-xl-fifa-world-cup-2026-display-box.jpg" alt="Adrenalyn Display Box" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Cards</div>
+          <div class="product-name">Adrenalyn XL Display Box 36 Pacotes FIFA 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 279,90</span>
+            <span class="price-new">R$ 265,91</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 265,91 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="3" data-price="7.99" data-name="Adrenalyn XL Pacote 6 Cards FIFA 2026">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/adrenalyn-xl-fifa-world-cup-2026-pacote-6-cards.jpg" alt="Adrenalyn 6 Cards" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Cards</div>
+          <div class="product-name">Adrenalyn XL Pacote 6 Cards FIFA World Cup 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 7,99</span>
+            <span class="price-new">R$ 7,59</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 7,59 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <!-- KITS -->
+      <div class="product-card" data-cat="4" data-price="169.90" data-name="Kit Premium Álbum + Adrenalyn + 50 Figurinhas">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/kit-premium-album-adrenalyn-50-figurinhas-fifa-2026.jpg" alt="Kit Premium" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-new">PROMO</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Kit</div>
+          <div class="product-name">Kit Premium com Álbum + Adrenalyn + 50 Figurinhas</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 169,90</span>
+            <span class="price-new">R$ 161,41</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 161,41 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="4" data-price="164.90" data-name="Box Sacola Álbum + 30 Envelopes">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/box-sacola-album-capa-cartao-30-envelopes-fifa-world-cup-2026.jpg" alt="Box Sacola" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Kit</div>
+          <div class="product-name">Box Sacola Álbum Capa Cartão + 30 Envelopes FIFA 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 164,90</span>
+            <span class="price-new">R$ 156,66</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 156,66 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="4" data-price="329.90" data-name="Box Super Premium Álbum Prata + 50 Envelopes">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/box-caixa-super-premium-album-prata-50-envelopes.jpg" alt="Box Super Premium" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Kit</div>
+          <div class="product-name">Box Super Premium Álbum Prata + 50 Envelopes FIFA 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 329,90</span>
+            <span class="price-new">R$ 313,41</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 313,41 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="4" data-price="259.90" data-name="Box Premium Imã Álbum Prata + 40 Envelopes">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/box-premium-ima-album-prata-40-envelopes.jpg" alt="Box Premium Imã" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Kit</div>
+          <div class="product-name">Box Premium Imã Álbum Prata + 40 Envelopes FIFA 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 259,90</span>
+            <span class="price-new">R$ 246,91</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 246,91 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="4" data-price="229.90" data-name="Kit Família 2 Álbuns + 200 Figurinhas">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/kit-familia-fifa-world-cup-2026.jpg" alt="Kit Família" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Kit</div>
+          <div class="product-name">Kit Família 2 Álbuns + 200 Figurinhas FIFA 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 229,90</span>
+            <span class="price-new">R$ 218,41</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 218,41 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="4" data-price="649.99" data-name="Kit 100 Envelopes + Dispenser FIFA 2026">
+        <div class="product-img">
+          <img src="https://www.paninbrasil.co/products/panini/100-envelopes-700-figurinhas-com-dispenser-fifa-2026.png" alt="Kit 100 Envelopes Dispenser" />
+          <span class="badge-pix">5% OFF PIX</span>
+          <span class="badge-full"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Entrega Full</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Kit</div>
+          <div class="product-name">100 Envelopes + 700 Figurinhas com Dispenser FIFA 2026</div>
+          <div class="product-prices">
+            <span class="price-old">R$ 649,99</span>
+            <span class="price-new">R$ 617,49</span>
+          </div>
+          <div class="price-pix-wrap"><span class="price-pix">R$ 617,49 no PIX</span></div>
+          <button class="btn-buy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Comprar</button>
+        </div>
+      </div>
+
+    </div><!-- /products-grid -->
+  </div><!-- /catalog-main -->
+</div><!-- /catalog-wrap -->
+
+<!-- TRUST -->
+<section class="trust-strip">
+  <div class="trust-grid">
+    <div class="trust-item"><div class="trust-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div><div class="trust-title">Compra 100% Segura</div><div class="trust-sub">Pagamento protegido e criptografado</div></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><div class="trust-title">Entrega para todo o Brasil</div><div class="trust-sub">Frete grátis acima de R$ 149</div></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="trust-title">Suporte de Colecionador</div><div class="trust-sub">Atendimento especializado</div></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div><div><div class="trust-title">Reposição Garantida</div><div class="trust-sub">Campanhas e reposições constantes</div></div></div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2>📬 Receba as melhores ofertas</h2>
+  <p>Cadastre seu e-mail e seja o primeiro a saber sobre promoções e lançamentos.</p>
+  <div class="nl-form">
+    <input type="email" placeholder="Seu melhor e-mail" />
+    <button>Cadastrar</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="https://vyy360zfmy.ufs.sh/f/eSgPtTcyxKbU5fkZZsIDBzXRPemMjHQ1d0Vs4yaOYr6EwUKS" alt="Arena Brasil Figurinhas" />
+      </div>
+      <p>A melhor loja de figurinhas e álbuns do Brasil. Especialistas em coleções esportivas para a Copa do Mundo 2026.</p>
+      <div class="footer-contact">
+        <a href="mailto:atendimento@paninbrasil.co"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> atendimento@paninbrasil.co</a>
+        <a href="https://wa.me/5511941067756"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.07 6.07l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> (11) 94106-7756</a>
+        <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Rua Delfim, 600 – Belo Horizonte/MG</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Categorias</h4>
+      <ul>
+        <li><a href="catalogo.html?categoria=1">Álbuns</a></li>
+        <li><a href="catalogo.html?categoria=2">Figurinhas</a></li>
+        <li><a href="catalogo.html?categoria=3">Cards</a></li>
+        <li><a href="catalogo.html?categoria=4">Kits</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Informações</h4>
+      <ul>
+        <li><a href="sobre.html">Sobre nós</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="acompanhar.html">Acompanhar Pedido</a></li>
+        <li><a href="entrar.html">Minha Conta</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Políticas</h4>
+      <ul>
+        <li><a href="privacidade.html">Política de Privacidade</a></li>
+        <li><a href="troca-devolucao.html">Troca e Devolução</a></li>
+        <li><a href="termos.html">Termos de Uso</a></li>
+        <li><a href="frete.html">Política de Frete</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Arena Brasil Figurinhas &bull; EMP ENGENHARIA LTDA &bull; CNPJ: 18.598.692/0001-87</div>
+    <div class="footer-badges">
+      <span class="footer-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:3px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Norton</span>
+      <span class="footer-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> ReclameAqui</span>
+      <span class="footer-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;vertical-align:middle;margin-right:3px"><polyline points="20 6 9 17 4 12"/></svg> Google Safe</span>
+    </div>
+    <div class="footer-legal">
+      <a href="privacidade.html">Privacidade</a>
+      <a href="termos.html">Termos</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5511941067756?text=Olá vim pelo site e gostaria de tirar uma dúvida!" class="wa-float" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+
+<script>
+  const catLabels = { todos: 'Catálogo', '1': 'Álbuns', '2': 'Figurinhas', '3': 'Cards', '4': 'Kits' };
+  let currentCat = 'todos';
+
+  function setCat(el, cat) {
+    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    currentCat = cat;
+    document.getElementById('bc-label').textContent = catLabels[cat] || 'Catálogo';
+    applyFilter();
+  }
+
+  function applyFilter() {
+    const cards = document.querySelectorAll('#product-grid .product-card');
+    let visible = 0;
+    cards.forEach(c => {
+      const show = currentCat === 'todos' || c.dataset.cat === currentCat;
+      c.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    document.getElementById('visible-count').textContent = visible;
+  }
+
+  function sortProducts() {
+    const val = document.getElementById('sort-select').value;
+    const grid = document.getElementById('product-grid');
+    const cards = [...grid.querySelectorAll('.product-card')];
+    cards.sort((a, b) => {
+      if (val === 'menor') return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+      if (val === 'maior') return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+      if (val === 'az')    return a.dataset.name.localeCompare(b.dataset.name);
+      if (val === 'za')    return b.dataset.name.localeCompare(a.dataset.name);
+      return 0;
+    });
+    cards.forEach(c => grid.appendChild(c));
+  }
+
+  /* Read URL param on load */
+  const urlCat = new URLSearchParams(location.search).get('categoria');
+  if (urlCat) {
+    const sideEl = document.querySelector(`.sidebar-item[data-cat="${urlCat}"]`);
+    if (sideEl) setCat(sideEl, urlCat);
+  }
+
+  /* Wire product IDs, links and cart */
+  const productIds = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
+  document.querySelectorAll('#product-grid .product-card').forEach((card, i) => {
+    const id   = productIds[i];
+    const href = `produto.html?id=${id}`;
+    card.querySelector('.btn-buy').dataset.id = id;
+    card.querySelector('.product-img').style.cursor = 'pointer';
+    card.querySelector('.product-img').addEventListener('click', () => { location.href = href; });
+    const nameEl = card.querySelector('.product-name');
+    nameEl.style.cursor = 'pointer';
+    nameEl.addEventListener('click', () => { location.href = href; });
+  });
+</script>
+<script src="cart.js"></script>
+</body>
+</html>

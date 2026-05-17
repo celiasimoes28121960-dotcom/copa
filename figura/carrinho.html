@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrinho – Arena Brasil Figurinhas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .cart-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 36px 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* ── ITEMS COLUMN ── */
+    .cart-items-col h1 {
+      font-size: 24px; font-weight: 800; color: var(--navy);
+      margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+    }
+    .cart-items-col h1 .item-count {
+      font-size: 14px; font-weight: 600; color: var(--gray);
+      background: var(--gray-lt); padding: 3px 10px; border-radius: 20px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 88px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 20px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 14px;
+      transition: box-shadow .15s;
+    }
+    .cart-item:hover { box-shadow: var(--shadow); }
+
+    .cart-item-img {
+      width: 88px; height: 88px; object-fit: contain;
+      border-radius: 10px; border: 1px solid var(--gray-lt);
+      background: var(--gray-lt);
+    }
+
+    .cart-item-info { min-width: 0; }
+    .cart-item-cat  { font-size: 11px; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+    .cart-item-name {
+      font-size: 15px; font-weight: 700; color: var(--navy);
+      line-height: 1.4; margin-bottom: 8px; display: block; text-decoration: none;
+    }
+    .cart-item-name:hover { color: var(--green); }
+    .cart-item-unit { font-size: 13px; color: var(--gray); margin-bottom: 10px; }
+    .cart-item-unit span { font-weight: 600; color: var(--text); }
+
+    .qty-ctrl-sm { display: flex; align-items: center; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; width: fit-content; }
+    .qty-ctrl-sm button {
+      width: 34px; height: 34px; border: none; background: var(--gray-lt);
+      font-size: 18px; font-weight: 700; cursor: pointer; color: var(--text);
+      transition: background .15s; line-height: 1;
+    }
+    .qty-ctrl-sm button:hover { background: #e5e7eb; }
+    .qty-ctrl-sm span {
+      min-width: 42px; text-align: center; font-size: 15px; font-weight: 700;
+      border-left: 1.5px solid var(--border); border-right: 1.5px solid var(--border);
+      padding: 0 6px; height: 34px; display: flex; align-items: center; justify-content: center;
+    }
+
+    .cart-item-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+    .cart-item-subtotal { font-size: 18px; font-weight: 800; color: var(--navy); }
+    .cart-item-remove {
+      font-size: 12px; color: var(--gray); cursor: pointer; border: none; background: none;
+      display: flex; align-items: center; gap: 4px; transition: color .15s; padding: 0;
+    }
+    .cart-item-remove:hover { color: var(--red); }
+
+    .cart-actions {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--border);
+    }
+    .cart-actions a { font-size: 13px; color: var(--gray); display: flex; align-items: center; gap: 6px; }
+    .cart-actions a:hover { color: var(--green); }
+    .btn-clear { font-size: 13px; color: var(--red); background: none; border: none; cursor: pointer; }
+    .btn-clear:hover { text-decoration: underline; }
+
+    /* ── EMPTY STATE ── */
+    .cart-empty {
+      grid-column: 1 / -1;
+      text-align: center; padding: 80px 24px;
+      background: var(--white); border-radius: 16px; border: 1px solid var(--border);
+    }
+    .cart-empty .empty-icon { font-size: 64px; margin-bottom: 16px; }
+    .cart-empty h2 { font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+    .cart-empty p  { font-size: 15px; color: var(--gray); margin-bottom: 28px; }
+    .btn-go-catalog {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green); color: #fff; padding: 14px 32px;
+      border-radius: 12px; font-size: 15px; font-weight: 700;
+      transition: background .2s;
+    }
+    .btn-go-catalog:hover { background: var(--green-dk); }
+
+    /* ── SUMMARY COLUMN ── */
+    .cart-summary {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px; position: sticky; top: 90px;
+    }
+    .cart-summary h2 { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 20px; }
+
+    .summary-row {
+      display: flex; justify-content: space-between;
+      font-size: 14px; color: #374151; padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .summary-row:last-of-type { border-bottom: none; }
+    .summary-row.total { font-size: 18px; font-weight: 800; color: var(--navy); padding: 14px 0 0; }
+    .summary-row.pix-row { color: var(--green); font-weight: 700; font-size: 15px; }
+    .summary-row .label { font-weight: 500; }
+    .summary-row .val   { font-weight: 700; }
+    .summary-disc { color: var(--green); }
+
+    .frete-box {
+      background: var(--green-lt);
+      border-radius: 10px; padding: 12px 16px; margin: 14px 0;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: var(--green-dk); font-weight: 600;
+    }
+
+    .cep-row { margin: 12px 0 20px; }
+    .cep-row label { font-size: 12px; font-weight: 600; color: var(--gray); display: block; margin-bottom: 6px; }
+    .cep-input-wrap { display: flex; gap: 8px; }
+    .cep-input-wrap input {
+      flex: 1; padding: 10px 12px; border: 1.5px solid var(--border);
+      border-radius: 8px; font-size: 14px; font-family: inherit; color: var(--text);
+      outline: none; transition: border-color .2s;
+    }
+    .cep-input-wrap input:focus { border-color: var(--green); }
+    .cep-input-wrap button {
+      padding: 10px 16px; background: var(--navy); color: #fff;
+      border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer;
+      transition: background .2s;
+    }
+    .cep-input-wrap button:hover { background: var(--navy-lt); }
+
+    .btn-checkout {
+      display: block; width: 100%; padding: 15px;
+      background: var(--green); color: #fff;
+      border-radius: 12px; font-size: 16px; font-weight: 800;
+      text-align: center; transition: background .2s, transform .1s;
+      margin-bottom: 12px;
+    }
+    .btn-checkout:hover { background: var(--green-dk); transform: translateY(-1px); }
+
+    .btn-checkout-pix {
+      display: block; width: 100%; padding: 12px;
+      background: var(--gray-lt); color: var(--navy);
+      border-radius: 10px; font-size: 14px; font-weight: 700;
+      text-align: center; margin-bottom: 18px; transition: background .15s;
+    }
+    .btn-checkout-pix:hover { background: #e5e7eb; }
+
+    .payment-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; justify-content: center; }
+    .pay-badge {
+      background: var(--gray-lt); border: 1px solid var(--border);
+      border-radius: 6px; padding: 5px 10px; font-size: 11px; font-weight: 600;
+      color: var(--gray);
+    }
+    .summary-secure {
+      text-align: center; font-size: 12px; color: var(--gray);
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .cart-page { grid-template-columns: 1fr; }
+      .cart-summary { position: static; }
+    }
+    @media (max-width: 540px) {
+      .cart-item { grid-template-columns: 68px 1fr; }
+      .cart-item-right { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="announce"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:5px"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Frete grátis para todo o Brasil hoje! <a href="catalogo.html">Ver produtos</a></div>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="https://vyy360zfmy.ufs.sh/f/eSgPtTcyxKbU5fkZZsIDBzXRPemMjHQ1d0Vs4yaOYr6EwUKS" alt="Arena Brasil Figurinhas" />
+    </a>
+    <div class="search-wrap">
+      <svg class="icon-search" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Buscar álbuns, figurinhas, kits…" />
+    </div>
+    <div class="header-actions">
+      <a href="entrar.html" class="header-btn">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Entrar
+      </a>
+      <a href="carrinho.html" class="cart-btn">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Carrinho <span class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html">Início</a>
+    <a href="catalogo.html">Catálogo</a>
+    <a href="catalogo.html?categoria=1">Álbuns</a>
+    <a href="catalogo.html?categoria=2">Figurinhas</a>
+    <a href="catalogo.html?categoria=3">Cards</a>
+    <a href="catalogo.html?categoria=4">Kits</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+    <div class="nav-sep"></div>
+    <a href="acompanhar.html" class="nav-track"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> Acompanhar Pedido</a>
+  </div>
+</nav>
+
+<!-- CART CONTENT -->
+<div class="cart-page" id="cart-page"></div>
+
+<section class="trust-strip" id="trust-strip" style="display:none">
+  <div class="trust-grid">
+    <div class="trust-item"><div class="trust-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div><div class="trust-title">Compra 100% Segura</div><div class="trust-sub">Pagamento protegido e criptografado</div></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><div class="trust-title">Entrega para todo o Brasil</div><div class="trust-sub">Frete grátis acima de R$ 149</div></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="trust-title">Suporte de Colecionador</div><div class="trust-sub">Atendimento especializado</div></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div><div><div class="trust-title">Troca em 7 dias</div><div class="trust-sub">Política de devolução facilitada</div></div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><img src="https://vyy360zfmy.ufs.sh/f/eSgPtTcyxKbU5fkZZsIDBzXRPemMjHQ1d0Vs4yaOYr6EwUKS" alt="Arena Brasil Figurinhas" /></div>
+      <p>A melhor loja de figurinhas e álbuns do Brasil. Especialistas em coleções esportivas para a Copa do Mundo 2026.</p>
+      <div class="footer-contact">
+        <a href="mailto:atendimento@paninbrasil.co"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> atendimento@paninbrasil.co</a>
+        <a href="https://wa.me/5511941067756"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.07 6.07l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> (11) 94106-7756</a>
+        <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Rua Delfim, 600 – Belo Horizonte/MG</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Categorias</h4><ul><li><a href="catalogo.html?categoria=1">Álbuns</a></li><li><a href="catalogo.html?categoria=2">Figurinhas</a></li><li><a href="catalogo.html?categoria=3">Cards</a></li><li><a href="catalogo.html?categoria=4">Kits</a></li></ul></div>
+    <div class="footer-col"><h4>Informações</h4><ul><li><a href="sobre.html">Sobre nós</a></li><li><a href="contato.html">Contato</a></li><li><a href="acompanhar.html">Acompanhar Pedido</a></li><li><a href="entrar.html">Minha Conta</a></li></ul></div>
+    <div class="footer-col"><h4>Políticas</h4><ul><li><a href="privacidade.html">Política de Privacidade</a></li><li><a href="troca-devolucao.html">Troca e Devolução</a></li><li><a href="termos.html">Termos de Uso</a></li><li><a href="frete.html">Política de Frete</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Arena Brasil Figurinhas &bull; EMP ENGENHARIA LTDA &bull; CNPJ: 18.598.692/0001-87</div>
+    <div class="footer-badges"><span class="footer-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:3px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Norton</span><span class="footer-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> ReclameAqui</span><span class="footer-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;vertical-align:middle;margin-right:3px"><polyline points="20 6 9 17 4 12"/></svg> Google Safe</span></div>
+    <div class="footer-legal"><a href="privacidade.html">Privacidade</a><a href="termos.html">Termos</a></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5511941067756?text=Olá vim pelo site e gostaria de tirar uma dúvida!" class="wa-float" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+
+<script src="cart.js"></script>
+<script>
+function renderCartPage() {
+  const items   = Cart.get();
+  const sub     = Cart.subtotal();
+  const pix     = Cart.pixTotal();
+  const disc    = sub - pix;
+  const freeShip = sub >= 149;
+  const page    = document.getElementById('cart-page');
+
+  if (!items.length) {
+    page.innerHTML = `
+      <div class="cart-empty">
+        <div class="empty-icon"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+        <h2>Seu carrinho está vazio</h2>
+        <p>Explore nosso catálogo e adicione produtos incríveis.</p>
+        <a href="catalogo.html" class="btn-go-catalog">Ver catálogo de produtos →</a>
+      </div>`;
+    return;
+  }
+
+  document.getElementById('trust-strip').style.display = '';
+
+  const itemsHTML = items.map(({ id, qty }) => {
+    const p = PRODUCTS.find(p => p.id === id);
+    if (!p) return '';
+    const itemSub = p.price * qty;
+    return `<div class="cart-item" id="ci-${p.id}">
+      <img src="${p.img}" alt="${p.name}" class="cart-item-img" />
+      <div class="cart-item-info">
+        <div class="cart-item-cat">${p.catName}</div>
+        <a href="produto.html?id=${p.id}" class="cart-item-name">${p.name}</a>
+        <div class="cart-item-unit">Unitário: <span>${fmt(p.price)}</span></div>
+        <div class="qty-ctrl-sm">
+          <button onclick="pageSetQty(${id}, ${qty-1})">−</button>
+          <span>${qty}</span>
+          <button onclick="pageSetQty(${id}, ${qty+1})">+</button>
+        </div>
+      </div>
+      <div class="cart-item-right">
+        <div class="cart-item-subtotal">${fmt(itemSub)}</div>
+        <button class="cart-item-remove" onclick="pageRemove(${id})">
+          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          Remover
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+
+  const freteHTML = freeShip
+    ? `<div class="frete-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:5px"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Frete grátis para todo o Brasil!</div>`
+    : `<div class="cep-row">
+        <label>Calcular frete</label>
+        <div class="cep-input-wrap">
+          <input type="text" placeholder="Digite seu CEP" maxlength="9" />
+          <button onclick="calcFrete()">Calcular</button>
+        </div>
+      </div>`;
+
+  page.innerHTML = `
+    <div class="cart-items-col">
+      <h1>Meu Carrinho <span class="item-count">${Cart.count()} ${Cart.count() === 1 ? 'item' : 'itens'}</span></h1>
+      ${itemsHTML}
+      <div class="cart-actions">
+        <a href="catalogo.html">← Continuar comprando</a>
+        <button class="btn-clear" onclick="clearCart()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg> Limpar carrinho</button>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <h2>Resumo do Pedido</h2>
+      <div class="summary-row">
+        <span class="label">Subtotal (${Cart.count()} ${Cart.count() === 1 ? 'item' : 'itens'})</span>
+        <span class="val">${fmt(sub)}</span>
+      </div>
+      <div class="summary-row">
+        <span class="label">Desconto PIX (5%)</span>
+        <span class="val summary-disc">−${fmt(disc)}</span>
+      </div>
+      <div class="summary-row">
+        <span class="label">Frete</span>
+        <span class="val" style="color:${freeShip ? 'var(--green)' : 'var(--text)'}">${freeShip ? 'Grátis' : 'Calcular abaixo'}</span>
+      </div>
+      ${freteHTML}
+      <div class="summary-row total">
+        <span>Total no PIX</span>
+        <span style="color:var(--green)">${fmt(pix)}</span>
+      </div>
+      <div class="summary-row pix-row" style="border:none;padding-top:4px;font-size:13px;color:var(--gray)">
+        <span>ou ${fmt(sub)} no cartão (3x sem juros)</span>
+      </div>
+
+      <a href="checkout.html" class="btn-checkout"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline;vertical-align:middle;margin-right:5px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Ir para o pagamento</a>
+      <a href="checkout.html" class="btn-checkout-pix"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:5px"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Pagar com PIX e ganhar 5% OFF</a>
+
+      <div class="payment-badges">
+        <span class="pay-badge">PIX</span>
+        <span class="pay-badge">Visa</span>
+        <span class="pay-badge">Mastercard</span>
+        <span class="pay-badge">Boleto</span>
+        <span class="pay-badge">Elo</span>
+      </div>
+      <div class="summary-secure">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Compra 100% segura e criptografada
+      </div>
+    </div>`;
+}
+
+function pageSetQty(id, qty) {
+  Cart.setQty(id, qty);
+  renderCartPage();
+}
+function pageRemove(id) {
+  Cart.remove(id);
+  renderCartPage();
+}
+function clearCart() {
+  if (confirm('Remover todos os itens do carrinho?')) {
+    Cart.clear();
+    renderCartPage();
+  }
+}
+function calcFrete() {
+  alert('Cálculo de frete em breve! Entre em contato via WhatsApp para mais informações.');
+}
+
+document.addEventListener('DOMContentLoaded', renderCartPage);
+</script>
+</body>
+</html>
